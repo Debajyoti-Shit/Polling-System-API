@@ -9,15 +9,10 @@ module.exports.createQuestion = async function (req, res) {
   try {
     // creating the questions
     const question = await Questions.create(req.body);
-    // for (let title of req.body.title) {
-    //   await Questions.create({ title });
-    // }
-
+   
     // returning the resoponse
     return res.status(200).json({
       message: "question created succesfully",
-      // "id": question._id,
-      // "title": req.body.title,
       "data": question
     });
   } catch (err) {
@@ -52,10 +47,9 @@ module.exports.deleteQuestion = async function (req, res) {
         });
       }
       // delete that particular option
-      // await option.remove();
+      await option.findByIdAndDelete(optionId);
     }
     // deleting the question
-    // await question.remove();
     await Questions.findByIdAndDelete(req.params.id);
 
     // sending response

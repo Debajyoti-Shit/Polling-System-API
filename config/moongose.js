@@ -1,6 +1,7 @@
 // require the library
+require('dotenv').config()
 const mongoose = require("mongoose");
-const db_url ="mongodb+srv://debajyotishit3:Deba16@cluster-polling-api.nawjv52.mongodb.net/?retryWrites=true&w=majority";
+const db_url =process.env.DB_URI;
 
 // connecting to the database
 mongoose.connect(db_url);

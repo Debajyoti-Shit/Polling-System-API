@@ -10,7 +10,7 @@ module.exports.addOption = async function (req, res) {
     // finding a particular question
     const question = await Questions.findById(req.params.id);
     console.log(req.body.text,req.params.id)
-    //for (let option of req.body.options) {
+   
       // creating options
       const currOption = await Option.create({
         text: req.body.text,
@@ -26,13 +26,10 @@ module.exports.addOption = async function (req, res) {
       // pushing options id into question
       question.options.push(currOption.id);
       question.save();
-    //}
+   
     // returning the resoponse
     return res.status(200).json({
       message: "option added succesfully",
-      // "id":currOption._id,
-      // "votes":currOption.votes,
-      // "link_to_vote":currOption.link_to_vote,
       "data":currOption
     });
   } catch (err) {
@@ -61,7 +58,6 @@ module.exports.deleteOption = async function (req, res) {
       { $pull: { options: { $eq: req.params.id } } }
     );
     // deleting the particular option
-    // await option.();
     await Option.findByIdAndDelete(req.params.id);
     // returning the response
     return res.status(200).json({
