@@ -1,4 +1,3 @@
-require('dotenv').config()
 // importing express package
 const express = require("express");
 
